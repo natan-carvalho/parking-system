@@ -27,7 +27,7 @@ dotnet run --project application
 
 Projeto de testes automatizados para a aplicação de estacionamento.
 
-- **Tests:** [`ParkingServiceTests.cs`](tests/Services/ParkingServiceTests.cs)
+- **Tests:** [`ParkingServiceTests.cs`](tests/Services/ParkingServiceTest.cs)
 - **Framework de Testes:** MSTest
 - **Dependências:**
   - `Microsoft.NET.Test.Sdk`
