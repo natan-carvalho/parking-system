@@ -16,4 +16,9 @@ public class Vehicle
       _licensePlate = value;
     }
   }
+
+  public override string ToString()
+  {
+    return $"Placa: {_licensePlate}";
+  }
 }
