@@ -11,18 +11,23 @@ public class ParkingService
     _parkedVehicles = [];
   }
 
-  public void ParkVehicle(Vehicle vehicle)
+  public void RegisterVehicle(string licensePlate)
   {
-    if (vehicle == null)
+    try
     {
-      throw new ArgumentNullException(nameof(vehicle), "Vehicle cannot be null.");
-    }
+      var vehicle = new Vehicle { LicensePlate = licensePlate };
 
-    _parkedVehicles.Add(vehicle);
+      _parkedVehicles.Add(vehicle);
+    }
+    catch (Exception ex)
+    {
+      throw new ArgumentNullException(ex.Message);
+    }
   }
 
-  public void RemoveVehicle(Vehicle vehicle)
+  public void RemoveVehicle(string licensePlate)
   {
+    var vehicle = _parkedVehicles.FirstOrDefault(v => v.LicensePlate == licensePlate);
     if (vehicle == null)
     {
       throw new ArgumentNullException(nameof(vehicle), "Vehicle cannot be null.");
