@@ -3,7 +3,7 @@ namespace application.Entities;
 public class Vehicle
 {
   private string _licensePlate;
-  private float _cost;
+  private decimal _cost;
   private DateTime _entryTime = DateTime.Now;
 
   public string LicensePlate
@@ -16,7 +16,7 @@ public class Vehicle
     }
   }
 
-  public float Cost
+  public decimal Cost
   {
     get => _cost;
     set
@@ -33,7 +33,7 @@ public class Vehicle
 
   private static void Validation<T>(T value, string message)
   {
-    if (string.IsNullOrWhiteSpace(value?.ToString()) || float.Parse(value?.ToString()) < 0)
+    if (string.IsNullOrWhiteSpace(value?.ToString()) || value.GetType() != typeof(string) && float.Parse(value?.ToString()) < 0)
     {
       throw new ArgumentNullException(nameof(value), message);
     }

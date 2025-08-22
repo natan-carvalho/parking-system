@@ -5,6 +5,7 @@ namespace application.Services;
 public class ParkingService
 {
   private readonly List<Vehicle> _parkedVehicles;
+  private const decimal ParkingCost = 5.00m;
 
   public ParkingService()
   {
@@ -15,7 +16,11 @@ public class ParkingService
   {
     try
     {
-      var vehicle = new Vehicle { LicensePlate = licensePlate };
+      var vehicle = new Vehicle
+      {
+        LicensePlate = licensePlate,
+        Cost = ParkingCost
+      };
 
       _parkedVehicles.Add(vehicle);
       return "";
@@ -38,7 +43,7 @@ public class ParkingService
 
       _parkedVehicles.Remove(vehicle);
 
-      return $"Veículo {licensePlate} removido com sucesso.";
+      return $"Veículo {licensePlate} removido com sucesso.\nTotal à pagar: R$ {CalculateParkingCost(vehicle):F2}";
     }
     catch (Exception ex)
     {
@@ -50,5 +55,12 @@ public class ParkingService
   public List<Vehicle> GetParkedVehicles()
   {
     return [.. _parkedVehicles];
+  }
+
+  private static decimal CalculateParkingCost(Vehicle vehicle)
+  {
+    var parkedDuration = DateTime.Now - vehicle.EntryTime;
+    var hoursParked = Math.Ceiling(parkedDuration.TotalHours);
+    return vehicle.Cost * (decimal)hoursParked;
   }
 }
