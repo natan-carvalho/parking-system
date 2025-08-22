@@ -5,7 +5,7 @@ ParkingService parkingService = new();
 
 while (startSystem)
 {
-  // Console.Clear();
+  Console.Clear();
   Console.WriteLine("\nBem-vindo ao sistema de estacionamento.");
   Console.WriteLine("\nEscolha uma opção:");
   Console.WriteLine("1 - Cadastrar um veículo.");
@@ -36,12 +36,16 @@ while (startSystem)
         Console.WriteLine($"{index} - {vehicle.LicensePlate}");
         index++;
       });
+      Console.WriteLine("Pressione enter para continuar.");
+      Console.ReadLine();
       break;
     case "4":
       startSystem = false;
       break;
     default:
       Console.WriteLine("Opção invalida, favor escolha uma opção valida.");
+      Console.WriteLine("Pressione enter para continuar.");
+      Console.ReadLine();
       break;
   }
 }
