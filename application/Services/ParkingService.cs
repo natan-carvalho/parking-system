@@ -11,29 +11,40 @@ public class ParkingService
     _parkedVehicles = [];
   }
 
-  public void RegisterVehicle(string licensePlate)
+  public string RegisterVehicle(string licensePlate)
   {
     try
     {
       var vehicle = new Vehicle { LicensePlate = licensePlate };
 
       _parkedVehicles.Add(vehicle);
+      return "";
     }
     catch (Exception ex)
     {
-      throw new ArgumentNullException(ex.Message);
+      return ex.Message;
     }
   }
 
-  public void RemoveVehicle(string licensePlate)
+  public string RemoveVehicle(string licensePlate)
   {
-    var vehicle = _parkedVehicles.FirstOrDefault(v => v.LicensePlate == licensePlate);
-    if (vehicle == null)
+    try
     {
-      throw new ArgumentNullException(nameof(vehicle), "Vehicle cannot be null.");
+      var vehicle = _parkedVehicles.FirstOrDefault(v => v.LicensePlate == licensePlate);
+      if (vehicle == null)
+      {
+        throw new ArgumentNullException(nameof(vehicle), "Este veículo não foi cadastrado.");
+      }
+
+      _parkedVehicles.Remove(vehicle);
+
+      return $"Veículo {licensePlate} removido com sucesso.";
+    }
+    catch (Exception ex)
+    {
+      return ex.Message;
     }
 
-    _parkedVehicles.Remove(vehicle);
   }
 
   public List<Vehicle> GetParkedVehicles()

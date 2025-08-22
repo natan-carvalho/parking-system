@@ -20,12 +20,18 @@ while (startSystem)
     case "1":
       Console.WriteLine("Informe a placa do veículo:");
       var licensePlate = Console.ReadLine();
-      parkingService.RegisterVehicle(licensePlate);
+      var registredOrThrow = parkingService.RegisterVehicle(licensePlate);
+      Console.WriteLine(registredOrThrow);
+      Console.WriteLine("Pressione enter para continuar.");
+      Console.ReadLine();
       break;
     case "2":
       Console.WriteLine("Informe a placa do veículo:");
       var licensePlateRemove = Console.ReadLine();
-      parkingService.RemoveVehicle(licensePlateRemove);
+      var removeOrThrow = parkingService.RemoveVehicle(licensePlateRemove);
+      Console.WriteLine(removeOrThrow);
+      Console.WriteLine("Pressione enter para continuar.");
+      Console.ReadLine();
       break;
     case "3":
       var vehicles = parkingService.GetParkedVehicles();
