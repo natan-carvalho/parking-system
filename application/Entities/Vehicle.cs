@@ -11,7 +11,7 @@ public class Vehicle
     {
       if (string.IsNullOrWhiteSpace(value))
       {
-        throw new ArgumentException("License plate cannot be null or empty.");
+        throw new ArgumentNullException(nameof(LicensePlate), "License plate cannot be null or empty.");
       }
       _licensePlate = value;
     }
