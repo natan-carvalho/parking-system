@@ -11,7 +11,7 @@ public class Vehicle
     get => _licensePlate;
     set
     {
-      Validation(value, "Favor informe um valor valido.");
+      Validation(value);
       _licensePlate = value;
     }
   }
@@ -21,7 +21,7 @@ public class Vehicle
     get => _cost;
     set
     {
-      Validation(value, "Favor informe um valor valido.");
+      Validation(value);
       _cost = value;
     }
   }
@@ -31,11 +31,11 @@ public class Vehicle
     get => _entryTime;
   }
 
-  private static void Validation<T>(T value, string message)
+  private static void Validation<T>(T value)
   {
     if (string.IsNullOrWhiteSpace(value?.ToString()) || value.GetType() != typeof(string) && float.Parse(value?.ToString()) < 0)
     {
-      throw new ArgumentNullException(nameof(value), message);
+      throw new ArgumentNullException(nameof(value), "Favor informe um valor valido.");
     }
   }
 }
