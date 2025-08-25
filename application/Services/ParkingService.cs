@@ -36,12 +36,12 @@ public class ParkingService
   {
     try
     {
-      var vehicle = _parkedVehicles.FirstOrDefault(v => v.LicensePlate == licensePlate);
-      if (vehicle == null)
+      if (string.IsNullOrWhiteSpace(licensePlate))
       {
-        throw new ArgumentNullException(nameof(vehicle), "Este veículo não foi cadastrado.");
+        throw new ArgumentNullException("A placa do veículo não pode ser nula ou vazia.");
       }
 
+      var vehicle = _parkedVehicles.FirstOrDefault(v => v.LicensePlate == licensePlate) ?? throw new InvalidOperationException("Este veículo não foi cadastrado.");
       _parkedVehicles.Remove(vehicle);
 
       return $"Veículo {licensePlate} removido com sucesso.\nTotal à pagar: R$ {CalculateParkingCost(vehicle):F2}";

@@ -1,7 +1,7 @@
 ﻿using application.Services;
 
 bool startSystem = true;
-ParkingService parkingService = new();
+ParkingService parkingService = new(5.00m);
 
 while (startSystem)
 {

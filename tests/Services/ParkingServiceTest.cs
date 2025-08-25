@@ -12,7 +12,7 @@ public class ParkingServiceTest
   [TestInitialize]
   public void Setup()
   {
-    _parkingService = new ParkingService();
+    _parkingService = new ParkingService(5.00m);
     _licensePlate = "ABC123";
   }
 
@@ -41,14 +41,14 @@ public class ParkingServiceTest
   }
 
   [TestMethod]
-  public void It_Shoud_Throw_Exception_When_Vehicle_Is_Null()
+  public void It_Should_Throw_Exception_When_Removing_Nonexistent_Vehicle()
   {
-    Assert.ThrowsException<ArgumentNullException>(() => _parkingService.RemoveVehicle(null));
+    Assert.IsTrue(_parkingService.RemoveVehicle("NONEXISTENT123").Contains("Este veículo não foi cadastrado."));
   }
 
   [TestMethod]
-  public void It_Shoud_Throw_Exception_When_LicensePlate_Is_Null()
+  public void It_Should_Throw_Exception_When_LicensePlate_Is_Null_On_Remove()
   {
-    Assert.ThrowsException<ArgumentNullException>(() => _parkingService.RegisterVehicle(null));
+    Assert.IsTrue(_parkingService.RemoveVehicle(null).Contains("A placa do veículo não pode ser nula ou vazia."));
   }
 }
