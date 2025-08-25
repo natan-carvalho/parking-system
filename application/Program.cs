@@ -3,7 +3,14 @@
 bool startSystem = true;
 ParkingService parkingService = new(5.00m);
 
-while (startSystem)
+static void WriteDefault(string message)
+{
+  Console.WriteLine(message);
+  Console.WriteLine("Pressione enter para continuar.");
+  Console.ReadLine();
+}
+
+static void InitProgram()
 {
   Console.Clear();
   Console.WriteLine("\nBem-vindo ao sistema de estacionamento.");
@@ -12,6 +19,11 @@ while (startSystem)
   Console.WriteLine("2 - Remover um veículo.");
   Console.WriteLine("3 - Listar todos os veículos.");
   Console.WriteLine("4 - Sair.");
+}
+
+while (startSystem)
+{
+  InitProgram();
 
   var value = Console.ReadLine();
 
@@ -21,17 +33,13 @@ while (startSystem)
       Console.WriteLine("Informe a placa do veículo:");
       var licensePlate = Console.ReadLine();
       var registredOrThrow = parkingService.RegisterVehicle(licensePlate);
-      Console.WriteLine(registredOrThrow);
-      Console.WriteLine("Pressione enter para continuar.");
-      Console.ReadLine();
+      WriteDefault(registredOrThrow);
       break;
     case "2":
       Console.WriteLine("Informe a placa do veículo:");
       var licensePlateRemove = Console.ReadLine();
       var removeOrThrow = parkingService.RemoveVehicle(licensePlateRemove);
-      Console.WriteLine(removeOrThrow);
-      Console.WriteLine("Pressione enter para continuar.");
-      Console.ReadLine();
+      WriteDefault(removeOrThrow);
       break;
     case "3":
       var vehicles = parkingService.GetParkedVehicles();
@@ -42,16 +50,13 @@ while (startSystem)
         Console.WriteLine($"{index} - {vehicle.LicensePlate}");
         index++;
       });
-      Console.WriteLine("Pressione enter para continuar.");
-      Console.ReadLine();
+      WriteDefault("");
       break;
     case "4":
       startSystem = false;
       break;
     default:
-      Console.WriteLine("Opção invalida, favor escolha uma opção valida.");
-      Console.WriteLine("Pressione enter para continuar.");
-      Console.ReadLine();
+      WriteDefault("Opção invalida, favor escolha uma opção valida.");
       break;
   }
 }
