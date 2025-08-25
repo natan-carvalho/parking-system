@@ -3,13 +3,6 @@
 bool startSystem = true;
 ParkingService parkingService = new(5.00m);
 
-static void WriteDefault(string message)
-{
-  Console.WriteLine(message);
-  Console.WriteLine("Pressione enter para continuar.");
-  Console.ReadLine();
-}
-
 static void InitProgram()
 {
   Console.Clear();
@@ -19,6 +12,13 @@ static void InitProgram()
   Console.WriteLine("2 - Remover um veículo.");
   Console.WriteLine("3 - Listar todos os veículos.");
   Console.WriteLine("4 - Sair.");
+}
+
+static void WriteDefault(string message)
+{
+  Console.WriteLine(message);
+  Console.WriteLine("Pressione enter para continuar.");
+  Console.ReadLine();
 }
 
 while (startSystem)
