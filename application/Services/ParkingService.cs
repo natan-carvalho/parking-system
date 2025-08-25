@@ -5,10 +5,11 @@ namespace application.Services;
 public class ParkingService
 {
   private readonly List<Vehicle> _parkedVehicles;
-  private const decimal ParkingCost = 5.00m;
+  private readonly decimal ParkingCost;
 
-  public ParkingService()
+  public ParkingService(decimal parkingCost)
   {
+    ParkingCost = parkingCost;
     _parkedVehicles = [];
   }
 
